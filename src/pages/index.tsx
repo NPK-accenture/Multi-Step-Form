@@ -1,12 +1,36 @@
 import React from "react"
+import { useForm, SubmitHandler} from "react-hook-form"
+
+const max_steps = 3;
+
 
 const IndexPage = () => {
+const goToPreviousStep = () =>{
+  setFormStep(cur => (cur-1))
+}
 
   const [formStep, setFormStep] = React.useState(0)
+  const {
+    watch,
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm<FormValues>({ 
+    mode: 'onChange',
+  })
+  
+  const submitForm: SubmitHandler<FormValues> = data => {
+    console.log(data);
+    window.alert(JSON.stringify(data));
+  }
+  
 
   const completeFormStep = ()  => {
     setFormStep(cur => cur+1)
   }
+
+        
+
 
   const renderButton = () => {
     if(formStep > 2) {
@@ -14,8 +38,9 @@ const IndexPage = () => {
     } else if (formStep == 2) {
       return (
         <button
-          onClick={completeFormStep}
-          type="button"
+        disabled={!isValid}
+          
+          type="submit"
           className="mt-6 bg-green-600 text-white rounded px-8 py-6 w-full disabled:bg-gray-400 disabled:cursor-not-allowed"
         >
           YARRRRR
@@ -24,6 +49,7 @@ const IndexPage = () => {
     } else {
             return (
             <button
+              disabled={!isValid}
               onClick={completeFormStep}
               type="button"
               className="mt-6 bg-green-600 text-white rounded px-8 py-6 w-full disabled:bg-gray-400 disabled:cursor-not-allowed"
@@ -52,9 +78,16 @@ const IndexPage = () => {
       </div>
       <div className="max-w-xl w-full mt-24 mb-24 rounded-lg shadow-2xl bg-white mx-auto overflow-hidden z-10">
         <div className="px-16 py-10">
-          <form>
-            
-
+          <form onSubmit={handleSubmit(submitForm)}>
+          <div className="flex items-center mb-2">
+          <button onClick={goToPreviousStep} type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+          </svg>
+          </button>
+            &nbsp;
+            step: {formStep + 1} of {max_steps}
+            </div>
             {/* SECTION 1 */}
             {formStep === 0 && (<section>
               <h2 className="font-semibold text-3xl mb-8">
@@ -66,7 +99,23 @@ const IndexPage = () => {
                 id="username"
                 name="username"
                 className="text-input"
+                {...register("username", {
+                  required: 
+                    {value: true,
+                    message: "Please Type a username"}
+                  }
+                  )
+                }
               />
+              {errors.username && (
+                <p>
+                  {errors.username.message}
+                  {console.log("ERROR HERE: ", errors)}
+                </p>
+                
+                )
+                
+                }
             </section>)}
 
 
@@ -79,6 +128,13 @@ const IndexPage = () => {
                 id="address"
                 name="address"
                 className="text-input"
+                {...register("address", {
+                  required: 
+                    {value: true,
+                    message: "Please Type an address"}
+                  }
+                  )
+                }
               />
             </section>)}
 
@@ -91,9 +147,16 @@ const IndexPage = () => {
                 name="toc"
                 className="p-3 text-green-600 rounded mr-3 border-2 border-gray-300 ring-0 focus:ring-0 focus:ring-offset-0 focus:border-0 cursor-pointer"
                 type="checkbox"
+                {...register("TOC", {
+                  required: 
+                    {value: true,
+                    message: "you must accept the Ts&Cs"}
+                  }
+                  )
+                }
               />
               <span>
-                I accept the{" "}
+                I accept the&nbsp;
                 <a className="text-blue-400 underline" href="/">
                   Terms and Conditions
                 </a>
@@ -105,9 +168,16 @@ const IndexPage = () => {
                 name="pp"
                 className="p-3 text-green-600 rounded mr-3 border-2 border-gray-300 ring-0 focus:ring-0 focus:ring-offset-0 focus:border-0 cursor-pointer"
                 type="checkbox"
+                {...register("PRIVACY", {
+                  required: 
+                    {value: true,
+                    message: "you must accept the Privacy Policy"}
+                  }
+                  )
+                }
               />
               <span>
-                I accept the{" "}
+                I accept the&nbsp;
                 <a className="text-blue-400 underline" href="/">
                   Privacy Policy
                 </a>
@@ -122,6 +192,9 @@ const IndexPage = () => {
               </section>)}
               {/* SUBMIT BUTTON FOR THE FORM */}
               {renderButton()}
+              <pre>
+                {JSON.stringify(watch(), null, 2)}
+              </pre>
           </form>
         </div>
       </div>
