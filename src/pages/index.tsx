@@ -60,23 +60,23 @@ const goToPreviousStep = () =>{
     }
   }
   return (
-    <div className="min-h-screen bg-green-900 flex flex-col items-start text-gray-900 antialiased relative">
+    <div className="min-h-screen bg-gray-900 flex flex-col items-start text-gray-900 antialiased relative">
       <div
         style={{
           clipPath: "polygon(0 0, 100% 0, 100% 80%, 0% 100%)",
           height: "34rem",
         }}
-        className="absolute bg-green-800 inset-x-0 top-0"
+        className="absolute bg-gray-800 inset-x-0 top-0"
       ></div>
       <div className="mx-auto z-10 mt-48 text-center">
         <h1 className="text-white text-5xl font-semibold">
-          Welcome to <span className="text-yellow-500">the Club</span>
+          Value <span className="text-yellow-500">Calculator</span>
         </h1>
         <p className="text-green-200 mt-2">
-          Become a new member in 3 easy steps
+          subtext
         </p>
       </div>
-      <div className="max-w-xl w-full mt-24 mb-24 rounded-lg shadow-2xl bg-white mx-auto overflow-hidden z-10">
+      <div className="max-w-xl w-800 mt-24 mb-24 rounded-lg shadow-2xl bg-white mx-auto overflow-hidden z-10">
         <div className="px-16 py-10">
           <form onSubmit={handleSubmit(submitForm)}>
           <div className="flex items-center mb-2">
@@ -91,9 +91,9 @@ const goToPreviousStep = () =>{
             {/* SECTION 1 */}
             {formStep === 0 && (<section>
               <h2 className="font-semibold text-3xl mb-8">
-                Personal Information
+                Let's start with setting some defaults
               </h2>
-              <label htmlFor="username">Username</label>
+              <label htmlFor="username">How many total models do you anticipate putting into place in the next year?</label>
               <input
                 type="text"
                 id="username"
@@ -112,10 +112,75 @@ const goToPreviousStep = () =>{
                   {errors.username.message}
                   {console.log("ERROR HERE: ", errors)}
                 </p>
-                
-                )
-                
+                )}
+
+<br /><br />
+              <label htmlFor="username">How many total models do you anticipate putting into place in the next year?</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                className="text-input"
+                {...register("username", {
+                  required: 
+                    {value: true,
+                    message: "Please Type a username"}
+                  }
+                  )
                 }
+              />
+              {errors.username && (
+                <p>
+                  {errors.username.message}
+                  {console.log("ERROR HERE: ", errors)}
+                </p>
+                )}
+
+<br /><br />
+              <label htmlFor="username">How many total models do you anticipate putting into place in the next year?</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                className="text-input"
+                {...register("username", {
+                  required: 
+                    {value: true,
+                    message: "Please Type a username"}
+                  }
+                  )
+                }
+              />
+              {errors.username && (
+                <p>
+                  {errors.username.message}
+                  {console.log("ERROR HERE: ", errors)}
+                </p>
+                )}
+
+
+
+<br /><br />
+              <label htmlFor="username">How many total models do you anticipate putting into place in the next year?</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                className="text-input"
+                {...register("username", {
+                  required: 
+                    {value: true,
+                    message: "Please Type a username"}
+                  }
+                  )
+                }
+              />
+              {errors.username && (
+                <p>
+                  {errors.username.message}
+                  {console.log("ERROR HERE: ", errors)}
+                </p>
+                )}
             </section>)}
 
 
