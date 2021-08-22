@@ -76,7 +76,7 @@ const goToPreviousStep = () =>{
           subtext
         </p>
       </div>
-      <div className="max-w-xl w-800 mt-24 mb-24 rounded-lg shadow-2xl bg-white mx-auto overflow-hidden z-10">
+      <div className="max-w-xl w-full mt-24 mb-24 rounded-lg shadow-2xl bg-white mx-auto overflow-hidden z-10">
         <div className="px-16 py-10">
           <form onSubmit={handleSubmit(submitForm)}>
           <div className="flex items-center mb-2">
@@ -91,116 +91,89 @@ const goToPreviousStep = () =>{
             {/* SECTION 1 */}
             {formStep === 0 && (<section>
               <h2 className="font-semibold text-3xl mb-8">
-                Let's start with setting some defaults
+                How many experience types do you anticipatie putting to work in the coming year?
               </h2>
-              <label htmlFor="username">How many total models do you anticipate putting into place in the next year?</label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                className="text-input"
-                {...register("username", {
-                  required: 
-                    {value: true,
-                    message: "Please Type a username"}
-                  }
-                  )
-                }
-              />
-              {errors.username && (
+              <label htmlFor="media_type">
+                Dimensional media can be used to create many types of experiences. Which ones of these do you anticipate putting into place in the coming year?
+              </label>
+              <br />
+              <br />
+              <div className="w-auto">
+                <div className="inline-block">
+                  <select id="media_type" name="media_type"
+                   {...register("media_type", {
+                    required: 
+                      {value: true,
+                      message: "Please Select a Media Type"}
+                    })}>
+                    <option value="Product Reseearch">Product Reseearch</option>
+                    <option value="Empoloyee Learning">Empoloyee Learning</option>
+                    <option value="Sales Enablement">Sales Enablement</option>
+                    <option value="Video Production">Video Production</option>
+                    <option value="Maintenance & Repair">Maintenance & Repair</option>
+                    <option value="Spatial Ecommerce">Spatial Ecommerce</option>
+                    <option value="Photo Production">Photo Production</option>
+                    <option value="Spatial Advertising">Spatial Advertising</option>
+                    <option value="Customer Education">Customer Education</option>
+                    <option value="Connected Worker">Connected Worker</option>
+                  </select>
+                  </div>
+                  &nbsp;
+                  on
+                  &nbsp;
+                <div className="inline-block">
+                  <select id="channel_type" name="channel_type"
+                  {...register("Channel_Type", {
+                    required: 
+                      {value: true,
+                      message: "Please Select a Channel Type"}
+                    })}
+                    >
+                    <option value="Web">Web</option>
+                    <option value="Augmented Reality">Augmented Reality Headset</option>
+                    <option value="VR Headset">Virtual Reality Headset</option>
+                    <option value="Mobile AR App">Mobile AR App</option>
+                    <option value="Photo Media">Photo Media</option>
+                    <option value="Video Media">Video Media</option>
+                    <option value="Mobile App">Mobile App</option>
+                  </select>
+                  {errors.username && (
                 <p>
                   {errors.username.message}
                   {console.log("ERROR HERE: ", errors)}
                 </p>
                 )}
-
-<br /><br />
-              <label htmlFor="username">How many total models do you anticipate putting into place in the next year?</label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                className="text-input"
-                {...register("username", {
-                  required: 
-                    {value: true,
-                    message: "Please Type a username"}
-                  }
-                  )
-                }
-              />
-              {errors.username && (
-                <p>
-                  {errors.username.message}
-                  {console.log("ERROR HERE: ", errors)}
-                </p>
-                )}
-
-<br /><br />
-              <label htmlFor="username">How many total models do you anticipate putting into place in the next year?</label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                className="text-input"
-                {...register("username", {
-                  required: 
-                    {value: true,
-                    message: "Please Type a username"}
-                  }
-                  )
-                }
-              />
-              {errors.username && (
-                <p>
-                  {errors.username.message}
-                  {console.log("ERROR HERE: ", errors)}
-                </p>
-                )}
-
-
-
-<br /><br />
-              <label htmlFor="username">How many total models do you anticipate putting into place in the next year?</label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                className="text-input"
-                {...register("username", {
-                  required: 
-                    {value: true,
-                    message: "Please Type a username"}
-                  }
-                  )
-                }
-              />
-              {errors.username && (
-                <p>
-                  {errors.username.message}
-                  {console.log("ERROR HERE: ", errors)}
-                </p>
-                )}
+                </div>
+              </div> 
             </section>)}
-
 
             {/* SECTION 2 */}
             {formStep === 1 && (<section>
-              <h2 className="font-semibold text-3xl mb-8">Billing Information</h2>
-              <label htmlFor="address">Address</label>
-              <input
-                type="text"
-                id="address"
-                name="address"
-                className="text-input"
-                {...register("address", {
-                  required: 
-                    {value: true,
-                    message: "Please Type an address"}
-                  }
-                  )
-                }
-              />
+              <h2 className="font-semibold text-3xl mb-8">How many products do you anticipate building these expereinces for?</h2>
+              <label htmlFor="address">Are you going to build these experiences for 1, 100, 1000 products this year?</label>
+              <br />
+              <br />
+              <select id="product_numbers" name="product_numbers"
+                   {...register("product_numbers", {
+                    required: 
+                      {value: true,
+                      message: "Please Select an Estimate"}
+                    })}>
+                    <option value="1">1</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="100">100</option>
+                    <option value="500">500</option>
+                    <option value="1,000">1,000</option>
+                    <option value="5,000">5,000</option>
+                    <option value="10,000">10,000</option>
+                    <option value="15,000">15,000</option>
+                    <option value="100,000">100,000</option>
+                    <option value="500,000">500,000</option>
+                    <option value="1,000,000">1,000,000</option>
+                    
+                  </select>
             </section>)}
 
 
